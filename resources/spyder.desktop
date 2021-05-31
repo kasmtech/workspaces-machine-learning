@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Spyder
+GenericName=Spyder
+Comment=Scientific Python Development Environment - Python3
+Exec=/opt/anaconda3/bin/spyder
+Categories=Development;Science;IDE;Qt;Education;
+Icon=/opt/anaconda3/lib/python3.8/site-packages/spyder/images/spyder.png
+Terminal=false
+StartupNotify=true
+MimeType=text/x-python;

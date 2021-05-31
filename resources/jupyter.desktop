@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Jupyter Notebook
+GenericName=Jupyter
+Comment=Scientific Python Development Environment - Python3
+Exec=/opt/anaconda3/bin/jupyter notebook --ip=127.0.0.1
+Categories=Development;Science;IDE;Qt;Education;
+Icon=/opt/anaconda3/lib/python3.8/site-packages/anaconda_navigator/static/images/logos/jupyter.png
+Terminal=false
+StartupNotify=true
+MimeType=text/x-python;

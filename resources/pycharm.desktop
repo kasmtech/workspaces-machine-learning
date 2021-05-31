@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PyCharm Community
+GenericName=PyCharm
+Exec=/opt/pycharm/bin/pycharm.sh
+Categories=Development;IDE;
+Icon=/opt/pycharm/bin/pycharm.svg
+Terminal=false
+StartupNotify=true
