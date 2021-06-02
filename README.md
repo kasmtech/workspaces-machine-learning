@@ -65,7 +65,7 @@ Add a new Workspace image to the deployment and launch.
 
 # Manual Deployment
 
-While this image is primarily built to run inside the Kasm platform, it can also be executed manually.  Please note that certain functionality, such as audio, is only available within the Kasm platform.
+While this image is primarily built to run inside the Kasm Workspaces platform, it can also be executed manually by itself.  Please note that certain functionality, such as audio, web filtering, uploads/downloads, etc, is only available within the Kasm platform.
 
 ```
 sudo docker run --rm  -it --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/desktop-ml:1.9.0
