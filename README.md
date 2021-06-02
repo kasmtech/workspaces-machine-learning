@@ -106,7 +106,3 @@ Please make a merge request or submit an issue to help us make this a better pro
     
 
 [logo]: https://cdn2.hubspot.net/hubfs/5856039/dockerhub/kasm_logo.png "Kasm Logo"
-[Kasm_Dashboard_2]: https://cdn2.hubspot.net/hubfs/5856039/dockerhub/kasm_server_2.png "Kasm Server Dashboard"
-[Kasm_Dashboard_3]: https://cdn2.hubspot.net/hubfs/5856039/dockerhub/kasm_server_3.png "Kasm Server Dashboard2"
-[Kasm_Kali]: https://cdn2.hubspot.net/hubfs/5856039/dockerhub/kali.png "Kasm Desktop"
-[Kasm_Workflow]: https://cdn2.hubspot.net/hubfs/5856039/dockerhub/kasm_workflow_1440.gif "Kasm Workflow"
