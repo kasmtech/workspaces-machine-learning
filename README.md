@@ -33,6 +33,8 @@ The following command will build the example image. Run this command locally on 
 sudo docker build -t kasmweb/desktop-ml:1.9.0 .
 ```
 
+If you wish to create your own custom image, be sure to base from the Kasm open-source CUDA based Ubuntu image and match the tag to the version of Kasm Workspaces that you have deployed. For example, if you are running Workspaces 1.9.0, you should be running images released from Kasm with the tag 1.9.0.
+
 # GPU Support
 
 Kasm Workspaces (formally Kasm Server) version 1.9.0 and higher supports NVIDIA GPUs. The following requirements must be met.
@@ -78,22 +80,7 @@ The container is now accessible via a browser : `https://<IP>:6901`
 
 # Help Us Make It Better
 
-Please make a merge request or submit an issue to help us make this a better product for the community. We would greatly appreciate your feedback.
-
-# Tags
-
-  - **[version-number]**
- 
-    Images are built and tagged along with the release of [**Kasm Workspaces**](https://www.kasmweb.com/index.html?utm_campaign=Github&utm_source=machinelearning) (e.g `1.9.0`). Utilize the version that corresponds to your version of Kasm Server.
-
-  - **[version-number]-rolling**
-  
-    **Rolling** tags are images that are updated and built nightly (e.g `1.9.0-rolling`). **Kasm Workspaces** administrators may consider using these **rolling** images to ensure their systems are always up to date. 
-
-  - **develop**
-
-     The **develop** tag is meant for testers and provides no expectation of compatibility with current release of **Kasm Workspaces**
-
+Please make a merge request or submit an issue to help us make this a better product for the ML community. We would greatly appreciate your feedback.
 
 # More Info
 
