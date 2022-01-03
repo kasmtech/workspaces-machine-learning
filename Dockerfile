@@ -1,4 +1,4 @@
-FROM kasmweb/core-cuda-bionic:develop-rolling
+FROM kasmweb/core-cuda-bionic:1.9.0-rolling
 
 USER root
 
