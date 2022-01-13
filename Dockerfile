@@ -1,4 +1,4 @@
-FROM kasmweb/core-cuda-bionic:1.10.0-rolling
+FROM kasmweb/core-nvidia-focal:develop-rolling
 
 USER root
 
@@ -13,62 +13,34 @@ RUN apt-get update && apt-get install -y \
         python3-pip libasound2 libegl1-mesa libgl1-mesa-glx \
         libxcomposite1 libxcursor1 libxi6 libxrandr2 libxss1 \
         libxtst6 gdal-bin ffmpeg vlc dnsutils iputils-ping \
-        git remmina remmina-plugin-rdp 
+        git remmina remmina-plugin-rdp
 
 # update pip and install python packages
-RUN pip3 install --upgrade pip
-RUN pip3 install numpy torch opencv-python torchvision typing \
-    torchstat torchsummary ptflops onnx onnxruntime lxml \
-    scikit-image Pillow ffmpeg tensorflow geopandas \
-    && pip install awscli --upgrade 
+COPY resources/install_python_packages.sh /tmp/
+RUN bash /tmp/install_python_packages.sh
 
 # Install Anaconda3
-RUN cd /tmp/ && wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh \
-    && bash Anaconda3-20*-Linux-x86_64.sh -b -p /opt/anaconda3 \
-    && rm -r /tmp/Anaconda3-20*-Linux-x86_64.sh \
-    && echo 'source /opt/anaconda3/bin/activate' >> /etc/bash.bashrc \
-    # Update all the conad things
-    && bash -c "source /opt/anaconda3/bin/activate \
-        && conda update -n root conda  \
-        && conda update --all \
-        && conda clean --all" \
-    && /opt/anaconda3/bin/conda config --set ssl_verify /etc/ssl/certs/ca-certificates.crt \
-    && /opt/anaconda3/bin/conda install pip \
-    && mkdir -p /home/kasm-user/.pip \
-    && chown -R 1000:1000 /opt/anaconda3 /home/kasm-default-profile/.conda/
+COPY resources/install_anaconda.sh /tmp/
+RUN bash /tmp/install_anaconda.sh
 
 # Install packages in conda environment
 USER 1000
-RUN bash -c "source /opt/anaconda3/bin/activate \
-    && conda activate \
-    && pip install folium pgeocode numpy torch opencv-python torchvision typing \
-       torchstat torchsummary ptflops onnx onnxruntime lxml scikit-image Pillow ffmpeg \
-       klvdata tensorflow geopandas \
-    && conda install -c conda-forge \
-        basemap \
-        matplotlib"
+COPY resources/install_conda_packages.sh /tmp/
+RUN bash /tmp/install_conda_packages.sh
 USER root 
 
+# Install nvtop
+COPY resources/install_nvtop.sh /tmp/
+RUN bash /tmp/install_nvtop.sh
+
 # QGIS
-RUN apt-get update && apt-get install -y \
-        gnupg \
-        software-properties-common \
-    && wget -qO - https://qgis.org/downloads/qgis-2020.gpg.key | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import \
-    && chmod a+r /etc/apt/trusted.gpg.d/qgis-archive.gpg \
-    && add-apt-repository "deb https://qgis.org/debian `lsb_release -c -s` main" \
-    && apt-get update \
-    && apt-get install -y \
-        qgis \
-        qgis-plugin-grass
+COPY resources/install_qgis.sh /tmp/
+RUN bash /tmp/install_qgis.sh
 
 # Install Visual Studio Code
 #install VS code
-RUN cd /tmp && wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O vs_code_amd64.deb \
-    && dpkg -i /tmp/vs_code_amd64.deb \
-    && cp /usr/share/applications/code.desktop $HOME/Desktop \
-    && chmod +x $HOME/Desktop/code.desktop \
-    && chown 1000:1000 $HOME/Desktop/code.desktop \
-    && rm /tmp/vs_code_amd64.deb
+COPY resources/install_vscode.sh /tmp/
+RUN bash /tmp/install_vscode.sh
 
 # Install PyCharm
 RUN cd /opt/ \
