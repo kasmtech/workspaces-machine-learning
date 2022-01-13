@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -ex
 
+ARCH=$(uname -p)
+
+if [[ "${ARCH}" =~ ^aarch64$ ]] ; then
+    echo "Skipping install of Edge for arm64 platform"
+    exit 0
+fi
+
 CHROME_ARGS="--password-store=basic --no-sandbox --disable-gpu --user-data-dir --no-first-run"
 
 apt-get update
